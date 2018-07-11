@@ -82,6 +82,8 @@ namespace fc {
   void tcp_socket::open()
   {
     my->_sock.open(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 0).protocol());
+    boost::asio::ip::tcp::no_delay noDelayOption(true);
+    my->_sock.set_option(noDelayOption);
   }
 
   bool tcp_socket::is_open()const {
